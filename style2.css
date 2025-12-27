@@ -1,0 +1,2046 @@
+/* --- Color Variables from previous recommendation --- */
+:root {
+    --color-deep-charcoal: #262626;
+    --color-crisp-white: #F8F8F8;
+    --color-muted-terracotta: #BC7E5C;
+    --color-soft-sage-green: #8A9A8A;
+    --color-warm-cream: #FDF2E9;
+    --color-black-logo: #000000; /* Use actual logo black if needed for brand text */
+}
+
+/* --- Basic Reset & Font Styling --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* General body font */
+    color: var(--color-deep-charcoal);
+    background-color: var(--color-crisp-white);
+}
+
+/* --- Navbar Styling --- */
+.navbar {
+    background-color: var(--color-crisp-white); /* Light background for the nav bar */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+    position: sticky; /* Makes the navbar stick to the top when scrolling */
+    top: 0;
+    z-index: 1000; /* Ensures it stays on top of other content */
+    width: 100%;
+}
+
+.navbar-container {
+    max-width: 1200px; /* Adjust as needed for your layout */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Padding on the sides */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-family: 'Playfair Display', serif; /* Elegant font for brand */
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--color-black-logo); /* Using pure black for brand text for strong contrast with logo */
+    text-decoration: none;
+    line-height: 1; /* Adjust line-height to align logo and text better */
+}
+
+.navbar-brand .logo-img {
+    height: 40px; /* Adjust logo height as needed */
+    margin-right: 10px;
+    vertical-align: middle; /* Align image vertically */
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    margin: 0; /* Override default list margin */
+    padding: 0; /* Override default list padding */
+}
+
+.navbar-menu li {
+    margin-left: 30px; /* Spacing between menu items */
+}
+
+.navbar-link {
+    color: var(--color-deep-charcoal);
+    text-decoration: none;
+    font-size: 1.1em;
+    font-weight: 500;
+    padding: 8px 0; /* Vertical padding to give hover effect space */
+    position: relative; /* For the underline effect */
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+/* Underline on hover effect */
+.navbar-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-muted-terracotta); /* Terracotta underline */
+    transition: width 0.3s ease;
+}
+
+.navbar-link:hover::after,
+.navbar-link.active::after {
+    width: 100%; /* Expand underline on hover/active */
+}
+
+.navbar-link:hover,
+.navbar-link.active {
+    color: var(--color-muted-terracotta); /* Text color change on hover/active */
+}
+
+/* --- Mobile Menu Toggle (Hamburger Icon) --- */
+.menu-toggle {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.menu-toggle .bar {
+    width: 100%;
+    height: 3px;
+    background-color: var(--color-deep-charcoal);
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger icon animation when active */
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* --- Responsive Design for Mobile --- */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-wrap: wrap; /* Allow items to wrap */
+        justify-content: center; /* Center items on smaller screens */
+        padding: 0 15px;
+    }
+
+    .navbar-brand {
+        width: 100%; /* Brand takes full width */
+        text-align: center;
+        justify-content: center;
+        margin-bottom: 15px; /* Space below brand */
+    }
+
+    .navbar-menu {
+        flex-direction: column;
+        width: 100%;
+        display: none; /* Hidden by default on mobile */
+        text-align: center;
+        background-color: var(--color-crisp-white);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        border-top: 1px solid var(--color-warm-cream); /* Separator line */
+    }
+
+    .navbar-menu.active {
+        display: flex; /* Show when active */
+    }
+
+    .navbar-menu li {
+        margin: 0; /* Remove horizontal margin */
+        width: 100%;
+        border-bottom: 1px solid var(--color-warm-cream); /* Subtle dividers */
+    }
+
+    .navbar-menu li:last-child {
+        border-bottom: none; /* No border on last item */
+    }
+
+    .navbar-link {
+        display: block; /* Make links full width */
+        padding: 15px 20px;
+        font-size: 1.2em;
+    }
+
+    .navbar-link::after {
+        bottom: 5px; /* Adjust underline position for mobile */
+    }
+
+    .menu-toggle {
+        display: flex; /* Show hamburger icon on mobile */
+        position: absolute; /* Position it absolutely to the right */
+        right: 20px;
+        top: 25px; /* Adjust vertical position */
+    }
+
+    .navbar-brand .logo-img {
+        height: 35px; /* Adjust logo size for mobile */
+    }
+}
+/* --- Footer Styling --- */
+.site-footer {
+    background-color: var(--color-deep-charcoal); /* Dark background */
+    color: var(--color-crisp-white); /* Light text */
+    padding: 40px 20px;
+    font-size: 0.95em;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid; /* Using CSS Grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
+    gap: 30px; /* Space between sections */
+    text-align: left;
+}
+
+.footer-section {
+    padding: 10px;
+}
+
+.footer-heading {
+    color: var(--color-crisp-white);
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif; /* Use your brand font for headings */
+    font-weight: 700;
+}
+
+.footer-section p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-link,
+.footer-link-btn {
+    color: var(--color-crisp-white);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--color-muted-terracotta); /* Terracotta on hover */
+}
+
+.footer-link-btn {
+    display: inline-block;
+    background-color: var(--color-muted-terracotta);
+    color: var(--color-crisp-white);
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.footer-link-btn:hover {
+    background-color: #A26B4A; /* Slightly darker terracotta on hover */
+}
+
+/* Social Icons */
+.social-icons {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    font-size: 1.5em;
+    color: var(--color-crisp-white);
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--color-soft-sage-green); /* Sage green on hover */
+}
+
+/* Back to Top Button */
+.footer-back-to-top {
+    display: block;
+    margin-top: 25px;
+    text-align: center;
+    color: var(--color-crisp-white);
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+}
+
+.footer-back-to-top:hover {
+    color: var(--color-muted-terracotta);
+}
+
+.footer-back-to-top i {
+    margin-right: 5px;
+}
+
+/* Footer Bottom Section */
+.footer-bottom {
+    border-top: 1px solid rgba(248, 248, 248, 0.1); /* Subtle separator */
+    margin-top: 30px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 0.85em;
+    color: rgba(248, 248, 248, 0.7); /* Slightly faded white for copyright */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr; /* Stack sections vertically */
+        text-align: center; /* Center text on mobile */
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+    }
+
+    .social-icons {
+        justify-content: center; /* Center social icons */
+    }
+}
+     
+      /* ---  Table Reservation Page Styling --- */
+
+/* Hero Section */
+.reservation-hero {
+    background: url('../images/gemini.png') no-repeat center center/cover; /* Use your interior image here! */
+    height: 350px; /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-crisp-white);
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Ensures overlay doesn't leak */
+}
+
+.reservation-hero .hero-overlay {
+    background-color: rgba(0, 0, 0, 0.4); /* Dark overlay to make text readable */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.reservation-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: var(--color-crisp-white); /* Ensure heading is white on dark overlay */
+}
+
+.reservation-hero p {
+    font-size: 1.2em;
+    max-width: 600px;
+    line-height: 1.5;
+    color: var(--color-crisp-white);
+}
+
+/* Form Section */
+.reservation-form-section {
+    background-color: var(--color-crisp-white); /* Light background for the form section */
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to the top within the section */
+}
+
+.form-card {
+    background-color: var(--color-warm-cream); /* Warm cream for the form card background */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
+    max-width: 700px; /* Max width for the form card */
+    width: 100%; /* Ensure it takes full width up to max */
+}
+
+.form-heading {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-deep-charcoal);
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2.2em;
+}
+
+.form-description {
+    color: var(--color-soft-sage-green); /* Sage green for description */
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.reservation-form .form-group {
+    margin-bottom: 20px;
+}
+
+.reservation-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-deep-charcoal);
+    font-weight: 500;
+    font-size: 1.05em;
+}
+
+.reservation-form input[type="text"],
+.reservation-form input[type="email"],
+.reservation-form input[type="tel"],
+.reservation-form input[type="date"],
+.reservation-form input[type="time"],
+.reservation-form input[type="number"],
+.reservation-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-soft-sage-green); /* Sage green border */
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--color-deep-charcoal);
+    background-color: var(--color-crisp-white); /* White background for inputs */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.reservation-form input:focus,
+.reservation-form textarea:focus {
+    border-color: var(--color-muted-terracotta); /* Terracotta focus border */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(188, 126, 92, 0.2); /* Soft terracotta glow on focus */
+}
+
+.reservation-form textarea {
+    resize: vertical; /* Allow vertical resizing */
+    min-height: 80px;
+}
+
+.reservation-form small {
+    display: block;
+    margin-top: 5px;
+    color: var(--color-soft-sage-green); /* Subtle text for small notes */
+    font-size: 0.85em;
+}
+
+.form-group-flex {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group-flex .form-group {
+    flex: 1; /* Distribute space equally */
+    margin-bottom: 0; /* Remove bottom margin from individual flex items */
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-muted-terracotta); /* Primary button color */
+    color: var(--color-crisp-white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #A26B4A; /* Slightly darker terracotta on hover */
+    transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .reservation-hero h1 {
+        font-size: 2.2em;
+    }
+    .reservation-hero p {
+        font-size: 1em;
+    }
+
+    .form-card {
+        padding: 25px;
+    }
+
+    .form-heading {
+        font-size: 1.8em;
+    }
+
+    .form-group-flex {
+        flex-direction: column; /* Stack date and time vertically */
+        gap: 0; /* Remove gap when stacked */
+    }
+    .form-group-flex .form-group {
+        margin-bottom: 20px; /* Add margin back when stacked */
+    }
+}
+ /* --- Admin Login Page Styling --- */
+.admin-login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--color-deep-charcoal); /* Use deep charcoal as background */
+    /* background-image: url('images/optional-subtle-pattern.png'); if you want a pattern over color */
+    /* background-size: cover; */
+}
+
+.login-container {
+    background-color: var(--color-warm-cream); /* Warm cream for login card */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+}
+
+.login-heading {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-deep-charcoal);
+    font-size: 2.2em;
+    margin-bottom: 25px;
+}
+
+.login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--color-deep-charcoal);
+    font-weight: 500;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-soft-sage-green);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--color-deep-charcoal);
+    background-color: var(--color-crisp-white);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form input:focus {
+    border-color: var(--color-muted-terracotta);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(188, 126, 92, 0.2);
+}
+
+.login-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: var(--color-muted-terracotta);
+    color: var(--color-crisp-white);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn:hover {
+    background-color: #A26B4A;
+    transform: translateY(-2px);
+}
+
+.login-message-box {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.login-message-box.error {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb;
+}
+
+/* --- Admin Dashboard Specific Styles --- */
+.admin-header {
+    background-color: var(--color-deep-charcoal); /* Your cafe's deep charcoal */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.admin-navbar {
+    display: flex; /* Key for horizontal layout */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 0 20px; /* Horizontal padding */
+}
+
+.admin-navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: var(--color-warm-cream); /* Warm cream for brand */
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.admin-nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Key for horizontal links */
+}
+
+.admin-nav-links li {
+    margin-left: 25px; /* Spacing between links */
+}
+
+.admin-nav-link {
+    color: var(--color-soft-sage-green); /* Soft sage green for links */
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.admin-nav-link:hover {
+    color: var(--color-muted-terracotta); /* Muted terracotta on hover */
+}
+
+.admin-nav-link i { /* Styles for Font Awesome icons */
+    margin-right: 8px;
+    font-size: 1.0em;
+}
+
+.logout-btn {
+    color: var(--color-crisp-white);
+    background-color: var(--color-muted-terracotta); /* Muted terracotta for logout */
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c05f42; /* Darker terracotta on hover */
+}
+
+/* Mobile Toggle - Ensure this is also present */
+.admin-nav-toggle {
+    display: none; /* Hidden on desktop */
+    font-size: 1.8em;
+    color: var(--color-warm-cream);
+    cursor: pointer;
+}
+
+/* Responsive Navbar (for smaller screens) */
+@media (max-width: 768px) {
+    .admin-nav-links {
+        display: none; /* Hide by default on small screens */
+        flex-direction: column; /* Stack vertically when active */
+        width: 100%;
+        position: absolute;
+        top: 70px; /* Adjust based on header height */
+        left: 0;
+        background-color: var(--color-deep-charcoal);
+        padding: 10px 0;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    }
+
+    .admin-nav-links.active {
+        display: flex; /* Show when active */
+    }
+
+    .admin-nav-links li {
+        margin: 10px 0; /* Vertical spacing */
+    }
+
+    .admin-nav-toggle {
+        display: block; /* Show toggle icon */
+    }
+}
+
+/* Admin link in footer */
+/* Admin Login Link - Make it more discoverable on hover */
+.admin-login-link {
+    /* Keep it very subtle normally */
+    color: transparent;   /* Makes text invisible */
+    font-size: 0.1em;     /* Makes text tiny */
+    
+    /* Give it a slightly larger clickable area */
+    display: inline-block; /* Allows setting padding/margin more reliably */
+    padding: 5px 8px;      /* Adds some padding around the tiny dot */
+    margin-left: 5px;
+
+    cursor: pointer;      /* Keep cursor as pointer to indicate it's clickable */
+    text-decoration: none;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Make it more visible when hovered over */
+.admin-login-link:hover {
+    color: var(--color-crisp-white); /* Change to crisp white */
+    background-color: rgba(0, 0, 0, 0.2); /* A slight dark background to make it noticeable */
+    font-size: 0.8em; /* Make text larger on hover */
+    border-radius: 3px; /* Slightly rounded corners on hover */
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        padding: 30px;
+    }
+    .login-heading {
+        font-size: 1.8em;
+    }
+    .admin-header h1 {
+        font-size: 2em;
+    }
+    .admin-nav-link {
+        display: block;
+        margin: 5px auto;
+    }
+    .admin-table th, .admin-table td {
+        padding: 8px;
+        font-size: 0.85em;
+    }
+    /* Hide some columns on small screens to save space */
+    .admin-table th:nth-child(3), .admin-table td:nth-child(3), /* Email */
+    .admin-table th:nth-child(4), .admin-table td:nth-child(4), /* Phone */
+    .admin-table th:nth-child(8), .admin-table td:nth-child(8), /* Requests */
+    .admin-table th:nth-child(10), .admin-table td:nth-child(10) /* Created At */
+    {
+        display: none;
+    }
+}
+/* --- Check Status Page Specific Styling --- */
+.check-status-page-content {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column; /* Allow hero and form sections to stack */
+    padding-bottom: 50px; /* Space for footer */
+    background-color: var(--color-crisp-white);
+}
+
+.status-hero {
+    background: url('../images/img11.avif') no-repeat center center/cover; /* Placeholder for status hero background */
+    color: var(--color-crisp-white);
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.status-hero .hero-overlay {
+    background-color: rgba(0, 0, 0, 0.5); /* Darker overlay for readability */
+    padding: 30px;
+    border-radius: 10px;
+    display: inline-block; /* Adjusts overlay size to content */
+}
+
+.status-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.status-hero p {
+    font-size: 1.2em;
+    max-width: 700px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.status-form-section {
+    padding: 50px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align form card to top */
+    flex-grow: 1; /* Allow section to grow */
+}
+
+/* Re-use form-card and form-group from reservation.php */
+.status-form-section .form-card {
+    max-width: 600px; /* Adjust max-width if needed */
+    width: 100%;
+}
+
+.status-form-section .form-heading {
+    margin-bottom: 25px;
+}
+
+.status-form-section .submit-btn {
+    margin-top: 20px;
+}
+
+.check-status-text {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1em;
+    color: var(--color-deep-charcoal);
+}
+
+.check-status-link {
+    color: var(--color-muted-terracotta);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.check-status-link:hover {
+    color: #A26B4A;
+    text-decoration: underline;
+}
+
+/* Reservation Results Display */
+.reservation-results {
+    margin-top: 40px;
+    border-top: 1px solid var(--color-soft-sage-green);
+    padding-top: 30px;
+}
+
+.reservation-results h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--color-deep-charcoal);
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.reservation-card {
+    background-color: var(--color-crisp-white);
+    border: 1px solid var(--color-soft-sage-green);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+}
+
+.reservation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.reservation-card h4 {
+    font-family: 'Roboto', sans-serif;
+    color: var(--color-muted-terracotta);
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed var(--color-soft-sage-green);
+    padding-bottom: 10px;
+}
+
+.reservation-card p {
+    margin-bottom: 8px;
+    line-height: 1.6;
+    color: var(--color-deep-charcoal);
+}
+
+.reservation-card p strong {
+    color: var(--color-deep-charcoal);
+}
+
+.reservation-card .submitted-at {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+/* Status specific colors (same as admin panel for consistency) */
+.status-pending { color: var(--color-deep-charcoal); font-weight: bold; }
+.status-approved { color: var(--color-soft-sage-green); font-weight: bold; }
+.status-declined { color: #dc3545; font-weight: bold; }
+
+
+/* Responsive Adjustments for Check Status Page */
+@media (max-width: 768px) {
+    .status-hero h1 {
+        font-size: 2.5em;
+    }
+    .status-hero p {
+        font-size: 1em;
+    }
+    .status-form-section {
+        padding: 30px 15px;
+    }
+    .reservation-card {
+        padding: 20px;
+    }
+    .reservation-card h4 {
+        font-size: 1.1em;
+    }
+}
+/* --- Enhanced Message Box Styling --- */
+.message-box {
+    padding: 15px 20px; /* More padding */
+    margin-bottom: 25px; /* More space below */
+    border-radius: 8px; /* Slightly more rounded corners */
+    font-weight: 600; /* Bolder text */
+    text-align: center; /* Center align message text */
+    font-size: 1.1em; /* Slightly larger font size */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for pop-out effect */
+    border: 1px solid transparent; /* Default transparent border */
+}
+/* --- Feedback Specific Styles --- */
+.read-message {
+    background-color: var(--color-light-grey); /* Lighter background for read messages */
+    opacity: 0.8; /* Slightly fade out read messages */
+}
+.unread-message {
+    font-weight: bold;
+    background-color: var(--color-warm-cream); /* Highlight unread messages */
+    border-left: 5px solid var(--color-muted-terracotta); /* Accent color */
+}
+.message-preview {
+    max-width: 250px; /* Limit width of message preview in table */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add "..." if text overflows */
+    white-space: nowrap; /* Keep it on one line */
+    display: inline-block; /* Required for text-overflow to work */
+    vertical-align: middle;
+}
+
+.message-box.success {
+    background-color: #d4edda; /* Light green */
+    color: #155724;            /* Dark green text */
+    border-color: #c3e6cb;     /* Green border */
+}
+
+.message-box.error {
+    background-color: #f8d7da; /* Light red */
+    color: #721c24;            /* Dark red text */
+    border-color: #f5c6cb;     /* Red border */
+}
+
+.message-box.info {
+    background-color: #fff3cd; /* Light yellow/orange */
+    color: #664d03;            /* Dark brown/orange text */
+    border-color: #ffc720;     /* Yellow/orange border */
+}
+
+/* Specific styling for the check status text link */
+.check-status-text {
+    text-align: center;
+    margin-top: 20px; /* More space above the link */
+    font-size: 1.1em; /* Slightly larger font */
+    color: var(--color-deep-charcoal);
+}
+
+.check-status-link {
+    color: var(--color-muted-terracotta);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.check-status-link:hover {
+    color: #A26B4A; /* Slightly darker terracotta on hover */
+    text-decoration: underline;
+}
+/* --- Features and Amenities Section Styling --- */
+.features-amenities-section {
+    padding: 80px 20px;
+    background-color: var(--color-warm-cream); /* Warm cream background */
+    text-align: center;
+}
+
+.features-amenities-section .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.2em;
+    color: var(--color-deep-charcoal); /* Dark charcoal heading */
+    margin-bottom: 15px;
+}
+
+.features-amenities-section .section-subheading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2em;
+    color: var(--color-deep-charcoal);
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between cards */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-category {
+    background-color: var(--color-crisp-white); /* Crisp white card background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.feature-category:hover {
+    transform: translateY(-8px); /* Lift effect on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+}
+
+.category-heading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    color: var(--color-muted-terracotta); /* Terracotta heading */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+}
+
+.category-heading .icon-heading {
+    font-size: 1.2em;
+    color: var(--color-soft-sage-green); /* Sage green for heading icons */
+}
+
+.feature-list {
+    list-style: none; /* Remove default list bullets */
+    padding: 0;
+    margin: 0;
+    width: 100%; /* Ensure list items span full width */
+}
+
+.feature-list li {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+    color: var(--color-deep-charcoal); /* Dark charcoal text */
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(138, 168, 138, 0.3); /* Soft dashed line */
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between icon and text */
+    justify-content: flex-start; /* Align text to left */
+}
+
+.feature-list li:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.feature-icon {
+    color: var(--color-muted-terracotta); /* Terracotta for feature icons */
+    font-size: 1.1em;
+    width: 25px; /* Fixed width for icon to align text */
+    text-align: center;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .features-amenities-section .section-heading {
+        font-size: 2.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    .features-amenities-section {
+        padding: 60px 15px;
+    }
+    .features-amenities-section .section-heading {
+        font-size: 2.2em;
+    }
+    .features-amenities-section .section-subheading {
+        font-size: 1em;
+        margin-bottom: 40px;
+    }
+    .features-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+}
+/* --- Reviews Page Hero Section --- */
+.reviews-page-hero {
+    background: url('../images/cf3.jpg') no-repeat center center/cover; /* Placeholder. Create this image! */
+    color: var(--color-crisp-white);
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.reviews-page-hero .hero-overlay {
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker overlay */
+    padding: 30px 40px;
+    border-radius: 10px;
+    display: inline-block; /* Adjusts overlay size to content */
+    max-width: 900px;
+}
+
+.reviews-page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4em;
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+}
+
+.reviews-page-hero p {
+    font-size: 1.4em;
+    line-height: 1.5;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* --- Testimonials Section --- */
+.testimonials-section {
+    padding: 80px 20px;
+    background-color: var(--color-crisp-white); /* Crisp white background */
+    text-align: center;
+}
+
+.testimonials-section .section-heading,
+.external-reviews-section .section-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    color: var(--color-deep-charcoal);
+    margin-bottom: 15px;
+}
+
+.testimonials-section .section-subheading,
+.external-reviews-section .section-subheading {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.15em;
+    color: var(--color-deep-charcoal);
+    margin-bottom: 60px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.testimonial-card {
+    background-color: var(--color-warm-cream); /* Warm cream card background */
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.testimonial-card .rating {
+    color: var(--color-muted-terracotta); /* Terracotta stars */
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.testimonial-card .rating i {
+    margin-right: 2px;
+}
+
+.testimonial-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.05em;
+    color: var(--color-deep-charcoal);
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-style: italic;
+}
+
+.author-info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95em;
+    color: #555;
+    font-weight: bold;
+}
+
+.author-location {
+    font-weight: normal;
+    color: #777;
+}
+
+.quote-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    font-size: 2.5em;
+    color: rgba(138, 168, 138, 0.4); /* Soft sage green with transparency */
+    z-index: 0;
+}
+
+/* --- External Reviews Section --- */
+.external-reviews-section {
+    padding: 80px 20px;
+    background-color: var(--color-soft-sage-green); /* Sage green background */
+    text-align: center;
+    color: var(--color-crisp-white); /* White text for contrast */
+}
+
+.external-reviews-section .section-heading,
+.external-reviews-section .section-subheading {
+    color: var(--color-crisp-white); /* White text for headings */
+}
+
+.external-platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 900px; /* Slightly narrower grid for platform cards */
+    margin: 0 auto;
+}
+
+.platform-card {
+    background-color: var(--color-crisp-white); /* White card background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--color-deep-charcoal); /* Dark charcoal text */
+}
+
+.platform-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+.platform-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.platform-icon {
+    font-size: 2.5em;
+    color: var(--color-muted-terracotta); /* Terracotta icons */
+}
+
+.platform-icon.google-icon {
+    color: #4285F4; /* Google brand color */
+}
+.platform-icon.justdial-icon {
+    color: #F7BF38; /* Justdial brand-like color */
+}
+
+
+.platform-card h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8em;
+    color: var(--color-deep-charcoal);
+    margin: 0;
+}
+
+.platform-rating {
+    margin-bottom: 20px;
+}
+
+.platform-rating .rating-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    color: var(--color-muted-terracotta);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.platform-rating .stars i {
+    color: gold; /* Gold stars */
+    font-size: 1.1em;
+}
+
+.platform-rating .review-count {
+    font-size: 0.9em;
+    color: #666;
+    display: block; /* New line for count */
+    margin-top: 5px;
+}
+
+.platform-quote {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.95em;
+    font-style: italic;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 25px;
+    flex-grow: 1; /* Pushes button to bottom if content varies */
+}
+
+.platform-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: var(--color-muted-terracotta);
+    color: var(--color-crisp-white);
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: auto; /* Aligns button to bottom */
+}
+
+.platform-btn:hover {
+    background-color: #A26B4A;
+    transform: translateY(-2px);
+}
+
+.platform-btn.google-btn {
+    background-color: #4285F4; /* Google blue */
+}
+.platform-btn.google-btn:hover {
+    background-color: #357ae8;
+}
+
+.platform-btn.justdial-btn {
+    background-color: #F7BF38; /* Justdial yellow/orange */
+    color: var(--color-deep-charcoal); /* Dark text for light background */
+}
+.platform-btn.justdial-btn:hover {
+    background-color: #e6b132;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .reviews-page-hero h1 {
+        font-size: 3em;
+    }
+    .testimonials-grid, .external-platforms-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .reviews-page-hero {
+        padding: 80px 15px;
+    }
+    .reviews-page-hero h1 {
+        font-size: 2.5em;
+    }
+    .reviews-page-hero p {
+        font-size: 1.1em;
+    }
+    .testimonials-section, .external-reviews-section {
+        padding: 50px 15px;
+    }
+    .testimonials-section .section-heading,
+    .external-reviews-section .section-heading {
+        font-size: 2.2em;
+        margin-bottom: 10px;
+    }
+    .testimonials-section .section-subheading,
+    .external-reviews-section .section-subheading {
+        font-size: 0.95em;
+        margin-bottom: 30px;
+    }
+    .testimonials-grid, .external-platforms-grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+}
+/* --- User Management Specific Styles --- */
+/* Admin specific body background */
+.admin-body {
+    background-color: var(--color-light-grey); /* A neutral background for admin areas */
+}
+
+/* Admin Login Body - Using color scheme directly */
+.admin-login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--color-deep-charcoal); /* Direct color from scheme */
+    /* If you prefer a subtle image, add: */
+    /* background: url('../images/admin-login-bg.jpg') no-repeat center center/cover; */
+    /* position: relative; */
+    /* z-index: 1; */
+}
+/* If using image with overlay: */
+/* .admin-login-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(51, 51, 51, 0.7);
+    z-index: -1;
+} */
+
+
+/* --- Admin Login Specific Styles --- */
+.admin-login-container {
+    background-color: rgba(255, 255, 255, 0.95); /* Crisp white with slight transparency */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.admin-login-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+    color: var(--color-muted-terracotta); /* Muted terracotta for title */
+    margin-bottom: 30px;
+}
+
+.admin-login-form .form-group {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.admin-login-form .form-group label {
+    font-weight: bold;
+    color: var(--color-deep-charcoal);
+    margin-bottom: 10px;
+    display: block;
+}
+
+.admin-login-form .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.admin-login-form .form-group input:focus {
+    border-color: var(--color-muted-terracotta);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(189, 87, 68, 0.2);
+}
+
+.admin-login-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    margin-top: 20px;
+}
+
+/* --- Admin Navbar Styles --- */
+.admin-header {
+    background-color: var(--color-deep-charcoal); /* Your cafe's deep charcoal */
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.admin-navbar {
+    display: flex; /* Key for horizontal layout */
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Adjust as needed */
+    margin: 0 auto;
+    padding: 0 20px; /* Horizontal padding */
+}
+
+.admin-navbar-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    color: var(--color-warm-cream); /* Warm cream for brand */
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.admin-nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Key for horizontal links */
+}
+
+.admin-nav-links li {
+    margin-left: 25px; /* Spacing between links */
+}
+
+.admin-nav-link {
+    color: var(--color-soft-sage-green); /* Soft sage green for links */
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.admin-nav-link:hover {
+    color: var(--color-muted-terracotta); /* Muted terracotta on hover */
+}
+
+.admin-nav-link i { /* Styles for Font Awesome icons */
+    margin-right: 8px;
+    font-size: 1.0em;
+}
+
+.logout-btn {
+    color: var(--color-crisp-white);
+    background-color: var(--color-muted-terracotta); /* Muted terracotta for logout */
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c05f42; /* Darker terracotta on hover */
+}
+
+/* Mobile Toggle */
+.admin-nav-toggle {
+    display: none; /* Hidden on desktop */
+    font-size: 1.8em;
+    color: var(--color-warm-cream);
+    cursor: pointer;
+}
+
+/* Responsive Navbar (for smaller screens) */
+@media (max-width: 768px) {
+    .admin-nav-links {
+        display: none; /* Hide by default on small screens */
+        flex-direction: column; /* Stack vertically when active */
+        width: 100%;
+        position: absolute;
+        top: 70px; /* Adjust based on header height */
+        left: 0;
+        background-color: var(--color-deep-charcoal);
+        padding: 10px 0;
+        text-align: center;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+        z-index: 1000; /* Ensure it's above other content */
+    }
+
+    .admin-nav-links.active {
+        display: flex; /* Show when active */
+    }
+
+    .admin-nav-links li {
+        margin: 10px 0; /* Vertical spacing */
+    }
+
+    .admin-nav-toggle {
+        display: block; /* Show toggle icon */
+    }
+}
+
+/* --- Admin Main Content Area --- */
+.admin-main-content {
+    flex-grow: 1; /* Allows content area to fill available space */
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: var(--color-crisp-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.admin-page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8em;
+    color: var(--color-muted-terracotta);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* --- Dashboard Specific Styles --- */
+.admin-dashboard-container p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--color-dark-grey);
+    font-size: 1.1em;
+}
+
+.dashboard-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.dashboard-card {
+    background-color: var(--color-warm-cream); /* Warm cream for cards */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-deep-charcoal);
+    flex: 1; /* Allow cards to grow */
+    min-width: 280px; /* Minimum width for cards */
+    max-width: 350px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.dashboard-card i {
+    font-size: 3em;
+    color: var(--color-muted-terracotta);
+    margin-bottom: 15px;
+}
+
+.dashboard-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    color: var(--color-deep-charcoal);
+}
+
+.dashboard-card p {
+    font-size: 0.95em;
+    color: var(--color-dark-grey);
+    line-height: 1.5;
+}
+
+/* --- General Form & Button Styles (apply to admin/users and admin/login) --- */
+.form-heading {
+    color: var(--color-muted-terracotta);
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.admin-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--color-deep-charcoal);
+}
+
+.form-group input[type="text"],
+.form-group input[type="password"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group input[type="time"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--color-muted-terracotta);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(189, 87, 68, 0.2); /* Muted terracotta light shadow */
+}
+
+.submit-btn {
+    background-color: var(--color-muted-terracotta);
+    color: var(--color-crisp-white);
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #c05f42; /* Darker terracotta */
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    display: inline-block;
+    padding: 15px 25px;
+    background-color: #6c757d; /* Grey */
+    color: var(--color-crisp-white);
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    margin-left: 10px; /* Space from submit button */
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+/* --- Table Styles (used for Users and Reservations) --- */
+.user-table-wrapper, .reservation-table-wrapper {
+    overflow-x: auto; /* Ensures table is scrollable on small screens */
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-crisp-white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-radius: 8px; /* Rounded corners for the table */
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+table th {
+    background-color: var(--color-deep-charcoal);
+    color: var(--color-warm-cream);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    white-space: nowrap; /* Prevents header text wrapping too early */
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}
+
+table tbody tr:hover {
+    background-color: var(--color-light-grey);
+}
+
+/* --- User Management Specific Styles --- */
+.admin-user-management-container {
+    background-color: var(--color-crisp-white); /* Already set by admin-main-content */
+    /* Add specific padding/margin if needed beyond admin-main-content */
+}
+
+.user-form-section {
+    background-color: var(--color-warm-cream);
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.no-users-message {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.1em;
+    color: #555;
+    background-color: var(--color-warm-cream);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.table-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2em;
+    color: var(--color-deep-charcoal);
+    margin-top: 50px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.role-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.role-staff {
+    background-color: var(--color-soft-sage-green); /* Changed to sage green for staff */
+    color: var(--color-crisp-white);
+}
+
+.role-manager {
+    background-color: var(--color-muted-terracotta); /* Muted terracotta for manager */
+    color: var(--color-crisp-white);
+}
+
+
+/* --- Reservations Specific Styles --- */
+.admin-reservations-container {
+    background-color: var(--color-crisp-white); /* Already set by admin-main-content */
+}
+
+.no-reservations {
+    text-align: center;
+    padding: 30px;
+    font-size: 1.1em;
+    color: #555;
+    background-color: var(--color-warm-cream);
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.status-badge {
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: bold;
+    display: inline-block;
+    min-width: 80px;
+    text-align: center;
+}
+
+.status-approved {
+    background-color: var(--color-soft-sage-green); /* Greenish for approved */
+    color: var(--color-crisp-white);
+}
+
+.status-declined {
+    background-color: var(--color-muted-terracotta); /* Reddish for declined */
+    color: var(--color-crisp-white);
+}
+
+.status-pending {
+    background-color: #ffc107; /* Yellowish for pending */
+    color: var(--color-deep-charcoal);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    justify-content: center; /* Center actions in table cell */
+}
+
+.action-btn {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    color: var(--color-crisp-white);
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-size: 0.9em;
+    border: none; /* Ensure buttons have no default border */
+    cursor: pointer;
+}
+
+.action-btn i {
+    pointer-events: none; /* Prevents icon from intercepting click */
+}
+
+.approve-btn {
+    background-color: var(--color-soft-sage-green); /* Use sage green */
+}
+
+.approve-btn:hover {
+    background-color: #8bb37e; /* Darker sage green */
+    transform: translateY(-2px);
+}
+
+.decline-btn {
+    background-color: var(--color-muted-terracotta); /* Use muted terracotta */
+}
+
+.decline-btn:hover {
+    background-color: #c82333; /* Darker terracotta */
+    transform: translateY(-2px);
+}
+
+.pending-btn {
+    background-color: #007bff; /* A neutral blue for pending action */
+}
+
+.pending-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.edit-btn { /* Re-used from previous user management CSS */
+    background-color: #007bff; /* Blue */
+}
+
+.edit-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.delete-btn { /* Re-used from previous user management CSS */
+    background-color: #dc3545; /* Red */
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+
+/* --- Message Box Styles --- */
+.message-box {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    text-align: center;
+    font-weight: bold;
+}
+
+.message-box.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message-box.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* --- Admin Footer --- */
+.admin-footer {
+    background-color: var(--color-deep-charcoal);
+    color: var(--color-soft-sage-green);
+    text-align: center;
+    padding: 20px;
+    margin-top: auto; /* Pushes footer to bottom */
+    font-size: 0.9em;
+}
+
+.admin-footer .footer-link {
+    color: var(--color-warm-cream);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.admin-footer .footer-link:hover {
+    color: var(--color-muted-terracotta);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+    .admin-main-content {
+        padding: 30px 15px;
+    }
+    .admin-page-title {
+        font-size: 2.2em;
+    }
+    .dashboard-card {
+        min-width: 250px;
+    }
+    table th, table td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .action-btn {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Navbar media queries already handled above */
+    .admin-login-container {
+        padding: 25px;
+    }
+    .admin-login-title {
+        font-size: 2em;
+    }
+    .admin-form .submit-btn, .admin-form .cancel-btn {
+        width: 100%;
+        margin-right: 0;
+        margin-top: 10px;
+    }
+    .dashboard-links {
+        flex-direction: column;
+        align-items: center;
+    }
+    .dashboard-card {
+        width: 90%;
+        max-width: 400px;
+    }
+    .user-form-section {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-page-title {
+        font-size: 1.8em;
+    }
+    table th, table td {
+        font-size: 0.8em;
+    }
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .action-btn {
+        margin: 5px 0;
+    }
+}

@@ -1,0 +1,65 @@
+-- Create the database if it doesn't exist
+CREATE DATABASE IF NOT EXISTS cafe;
+
+-- Use the newly created database
+USE cafe;
+
+-- Create the 'reservation' table
+CREATE TABLE IF NOT EXISTS reservation (
+    id INT AUTO_INCREMENT PRIMARY KEY,          -- Unique ID for each reservation
+    full_name VARCHAR(255) NOT NULL,            -- Customer's full name
+    email VARCHAR(255) NOT NULL,                -- Customer's email address
+    phone_number VARCHAR(20) NOT NULL,          -- Customer's phone number
+    reservation_date DATE NOT NULL,             -- Date of the reservation
+    reservation_time TIME NOT NULL,             -- Time of the reservation
+    number_of_guests INT NOT NULL,              -- Number of guests
+    special_requests TEXT,                      -- Any special requests (can be NULL)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Timestamp when the reservation was created
+);
+
+
+USE cafe; -- Make sure you're using the 'cafe' database
+
+ALTER TABLE reservation
+ADD COLUMN status VARCHAR(50) DEFAULT 'pending' NOT NULL;
+
+
+----------------------------------User----------------------------------------
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('manager', 'staff') DEFAULT 'staff', -- 'manager' can manage users, 'staff' can only manage reservations
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- OPTIONAL: Insert your first admin user (manager role).
+-- REPLACE 'new_admin_password' with a strong password.
+-- You can run this directly in your database management tool (e.g., phpMyAdmin).
+-- For security, DO NOT put this insert statement in your PHP code.
+INSERT INTO users (username, password_hash, role) VALUES ('admin', '$2y$10$w09yC6q7D/J.N7uR6lJ04eY/gC9sK2O7p5.hX4zR8V2FvG0aB1X5k', 'manager');
+-- The hashed password '$2y$10$w09yC6q7D/J.N7uR6lJ04eY/gC9sK2O7p5.hX4zR8V2FvG0aB1X5k' corresponds to 'password123'
+-- Please generate your own hash for a secure password using password_hash('YourStrongPassword', PASSWORD_DEFAULT);
+
+
+=========password hashing====================
+<?php
+echo password_hash('YourReallyStrongPasswordHere', PASSWORD_DEFAULT);
+?>
+
+
+--------------------------------Feedback-----------------------------------------
+
+CREATE TABLE feedback (
+    id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    subject VARCHAR(255),
+    message TEXT NOT NULL,
+    submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    is_read BOOLEAN DEFAULT FALSE
+);
+
+
+
+

@@ -1,0 +1,90 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <!-- added style to navbar -->
+     <style>
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+           position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        li {
+            float: left;
+        }
+
+        li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover {
+            background-color: #111;
+            color:rgb(4, 77, 180);
+        }
+        
+        div.scroll-container {
+  background-color: #333;
+  overflow: auto;
+  /* white-space: nowrap; */
+  padding: 10px;
+}
+
+    
+ .scroll-container {
+  background-color: #333;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 10px 0;
+  margin-top: 0;
+  height: calc(100vh - 48px); /* Adjust 48px if your navbar is taller/shorter */
+}
+
+.scroll-container img {
+  height: 90%;
+  width: auto;
+  display: inline-block;
+  padding: 10px;
+  vertical-align: middle;
+}
+
+    </style>
+
+    <title>Menu</title>
+    <link rel="stylesheet" href="style.css">
+    
+    
+    <title>Menu</title>
+ </head>
+ <body>
+    <!-- added navbar -->
+
+      <ul>
+        <li><a class="active" href="cafe.html">Home</a></li>
+        <li><a href="images2.html">Gallery</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About Us</a></li>
+     </ul>
+<br>
+      <!-- added menu -->
+     <div class="scroll-container">
+      <img src="menu/mfront.png" alt="mfront">
+     <img src="menu/m1.png" alt="m1">
+     <img src="menu/m2.png" alt="m2">
+     <img src="menu/m3.png" alt="m3">
+     <img src="menu/m4.png" alt="m4">
+     </div>
+ </body>
+ </html>

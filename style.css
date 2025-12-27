@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  align-items: center; /* vertically center if needed */
+  justify-content: space-between;
+}
+
+.content {
+  flex: 1;
+  /* Optional: add padding or styling */
+}
+
+.image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.image img {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+image{
+    border-radius: 10%;
+}
